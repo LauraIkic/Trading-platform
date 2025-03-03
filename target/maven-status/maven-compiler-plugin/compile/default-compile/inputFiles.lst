@@ -1,0 +1,16 @@
+/Users/lauraikic/Desktop/GITREPOS/Trading-plattform/src/main/java/at/ikic/tradingPlatform/Controller/AuthController.java
+/Users/lauraikic/Desktop/GITREPOS/Trading-plattform/src/main/java/at/ikic/tradingPlatform/Controller/HomeController.java
+/Users/lauraikic/Desktop/GITREPOS/Trading-plattform/src/main/java/at/ikic/tradingPlatform/Dto/Request/AuthRequestDto.java
+/Users/lauraikic/Desktop/GITREPOS/Trading-plattform/src/main/java/at/ikic/tradingPlatform/Dto/Response/AuthResponseDto.java
+/Users/lauraikic/Desktop/GITREPOS/Trading-plattform/src/main/java/at/ikic/tradingPlatform/Entity/TwoFactorAuth.java
+/Users/lauraikic/Desktop/GITREPOS/Trading-plattform/src/main/java/at/ikic/tradingPlatform/Entity/User.java
+/Users/lauraikic/Desktop/GITREPOS/Trading-plattform/src/main/java/at/ikic/tradingPlatform/Enum/UserRole.java
+/Users/lauraikic/Desktop/GITREPOS/Trading-plattform/src/main/java/at/ikic/tradingPlatform/Enum/VerificationType.java
+/Users/lauraikic/Desktop/GITREPOS/Trading-plattform/src/main/java/at/ikic/tradingPlatform/Mapper/AuthResponseMapper.java
+/Users/lauraikic/Desktop/GITREPOS/Trading-plattform/src/main/java/at/ikic/tradingPlatform/Repository/UserRepository.java
+/Users/lauraikic/Desktop/GITREPOS/Trading-plattform/src/main/java/at/ikic/tradingPlatform/Service/AuthService.java
+/Users/lauraikic/Desktop/GITREPOS/Trading-plattform/src/main/java/at/ikic/tradingPlatform/TradingPlatformApplication.java
+/Users/lauraikic/Desktop/GITREPOS/Trading-plattform/src/main/java/at/ikic/tradingPlatform/config/AppConfig.java
+/Users/lauraikic/Desktop/GITREPOS/Trading-plattform/src/main/java/at/ikic/tradingPlatform/config/JwtConstant.java
+/Users/lauraikic/Desktop/GITREPOS/Trading-plattform/src/main/java/at/ikic/tradingPlatform/config/JwtTokenProvider.java
+/Users/lauraikic/Desktop/GITREPOS/Trading-plattform/src/main/java/at/ikic/tradingPlatform/config/JwtTokenValidator.java
