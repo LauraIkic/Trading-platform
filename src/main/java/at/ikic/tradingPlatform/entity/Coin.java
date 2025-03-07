@@ -13,7 +13,7 @@ import java.util.Date;
 public class Coin implements Serializable {
 
     @Id
-    @JsonProperty("id")  // Optional if you need to map differently
+    @JsonProperty("id")
     private String id;
 
     @JsonProperty("symbol")
