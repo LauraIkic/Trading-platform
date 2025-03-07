@@ -1,6 +1,6 @@
 package at.ikic.tradingPlatform.service;
 
-import at.ikic.tradingPlatform.dto.Request.AuthRequestDto;
+import at.ikic.tradingPlatform.dto.request.AuthRequestDto;
 import at.ikic.tradingPlatform.entity.User;
 import at.ikic.tradingPlatform.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

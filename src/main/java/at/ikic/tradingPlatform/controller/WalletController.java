@@ -1,7 +1,7 @@
 package at.ikic.tradingPlatform.controller;
 
 import at.ikic.tradingPlatform.Enum.WalletTransactionType;
-import at.ikic.tradingPlatform.dto.Request.WalletRequestDto;
+import at.ikic.tradingPlatform.dto.request.WalletRequestDto;
 import at.ikic.tradingPlatform.entity.Wallet;
 import at.ikic.tradingPlatform.repository.WalletRepository;
 import org.springframework.beans.factory.annotation.Autowired;

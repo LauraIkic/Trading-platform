@@ -1,4 +1,4 @@
-package at.ikic.tradingPlatform.dto.Request;
+package at.ikic.tradingPlatform.dto.request;
 
 import at.ikic.tradingPlatform.Enum.WalletTransactionType;
 import lombok.Data;

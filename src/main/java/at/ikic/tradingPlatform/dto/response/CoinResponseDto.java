@@ -1,4 +1,4 @@
-package at.ikic.tradingPlatform.dto.Response;
+package at.ikic.tradingPlatform.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

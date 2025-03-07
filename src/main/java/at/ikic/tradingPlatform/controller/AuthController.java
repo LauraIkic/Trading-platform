@@ -1,10 +1,10 @@
 package at.ikic.tradingPlatform.controller;
 
-import at.ikic.tradingPlatform.dto.Request.AuthRequestDto;
+import at.ikic.tradingPlatform.dto.request.AuthRequestDto;
 import at.ikic.tradingPlatform.entity.User;
 import at.ikic.tradingPlatform.mapper.AuthResponseMapper;
 import at.ikic.tradingPlatform.repository.UserRepository;
-import at.ikic.tradingPlatform.dto.Response.AuthResponseDto;
+import at.ikic.tradingPlatform.dto.response.AuthResponseDto;
 import at.ikic.tradingPlatform.service.AuthService;
 import at.ikic.tradingPlatform.config.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;

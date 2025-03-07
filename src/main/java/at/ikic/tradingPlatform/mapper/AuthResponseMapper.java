@@ -1,6 +1,6 @@
 package at.ikic.tradingPlatform.mapper;
 
-import at.ikic.tradingPlatform.dto.Response.AuthResponseDto;
+import at.ikic.tradingPlatform.dto.response.AuthResponseDto;
 import org.springframework.stereotype.Component;
 
 @Component
