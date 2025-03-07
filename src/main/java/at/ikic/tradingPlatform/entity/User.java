@@ -23,5 +23,10 @@ public class User {
 
     @Embedded
     private TwoFactorAuth twoFactorAuth = new TwoFactorAuth();
+
     private UserRole userRole = UserRole.USER;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "wallet_id")
+    private Wallet wallet = new Wallet();
 }

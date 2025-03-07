@@ -10,13 +10,8 @@ import java.util.UUID;
 @Data
 public class Wallet {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @OneToOne
-    private User UserId;
-
-
-    private BigDecimal balance;
-
+    private BigDecimal balance = BigDecimal.ZERO;
 }
