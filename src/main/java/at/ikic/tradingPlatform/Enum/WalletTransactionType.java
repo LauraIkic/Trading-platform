@@ -1,6 +1,6 @@
 package at.ikic.tradingPlatform.Enum;
 
 public enum WalletTransactionType {
-    ADD,
+    DEPOSIT,
     WITHDRAW
 }
