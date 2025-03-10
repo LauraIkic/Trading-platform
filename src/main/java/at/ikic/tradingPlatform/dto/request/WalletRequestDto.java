@@ -1,6 +1,6 @@
 package at.ikic.tradingPlatform.dto.request;
 
-import at.ikic.tradingPlatform.Enum.WalletTransactionType;
+import at.ikic.tradingPlatform.enums.WalletTransactionType;
 import lombok.Data;
 import jakarta.validation.constraints.NotNull;
 

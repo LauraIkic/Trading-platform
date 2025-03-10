@@ -1,4 +1,4 @@
-package at.ikic.tradingPlatform.config;
+package at.ikic.tradingPlatform.config.kafka;
 
 import at.ikic.tradingPlatform.entity.Coin;
 import org.apache.kafka.clients.admin.NewTopic;

@@ -1,7 +1,7 @@
 package at.ikic.tradingPlatform.entity;
 
-import at.ikic.tradingPlatform.Enum.TransactionStatus;
-import at.ikic.tradingPlatform.Enum.TransactionType;
+import at.ikic.tradingPlatform.enums.TransactionStatus;
+import at.ikic.tradingPlatform.enums.TransactionType;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.Instant;

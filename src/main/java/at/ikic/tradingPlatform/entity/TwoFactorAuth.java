@@ -1,6 +1,6 @@
 package at.ikic.tradingPlatform.entity;
 
-import at.ikic.tradingPlatform.Enum.VerificationType;
+import at.ikic.tradingPlatform.enums.VerificationType;
 import lombok.Data;
 
 @Data

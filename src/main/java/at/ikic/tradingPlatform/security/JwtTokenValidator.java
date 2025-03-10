@@ -1,5 +1,6 @@
-package at.ikic.tradingPlatform.config;
+package at.ikic.tradingPlatform.security;
 
+import at.ikic.tradingPlatform.constants.JwtConstant;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -21,13 +22,13 @@ public class JwtTokenValidator extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String jwt = request.getHeader(at.ikic.tradingPlatform.config.JwtConstant.JWT_HEADER);
+        String jwt = request.getHeader(JwtConstant.JWT_HEADER);
 
         if (jwt != null) {
             jwt = jwt.substring(7);
 
             try {
-                SecretKey key = Keys.hmacShaKeyFor(at.ikic.tradingPlatform.config.JwtConstant.SECRETE_KEY.getBytes());
+                SecretKey key = Keys.hmacShaKeyFor(JwtConstant.SECRETE_KEY.getBytes());
                 Claims claims = Jwts.parser().setSigningKey(key).build().parseClaimsJws(jwt).getBody();
 
                 String email = String.valueOf(claims.get("mail"));

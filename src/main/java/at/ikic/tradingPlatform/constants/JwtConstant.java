@@ -1,4 +1,4 @@
-package at.ikic.tradingPlatform.config;
+package at.ikic.tradingPlatform.constants;
 
 
 public class JwtConstant{

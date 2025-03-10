@@ -1,6 +1,6 @@
 package at.ikic.tradingPlatform.kafka.producer;
 
-import at.ikic.tradingPlatform.config.KafkaConstant;
+import at.ikic.tradingPlatform.constants.KafkaConstant;
 import at.ikic.tradingPlatform.entity.Coin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;

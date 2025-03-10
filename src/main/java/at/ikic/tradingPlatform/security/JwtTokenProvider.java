@@ -1,5 +1,6 @@
-package at.ikic.tradingPlatform.config;
+package at.ikic.tradingPlatform.security;
 
+import at.ikic.tradingPlatform.constants.JwtConstant;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;

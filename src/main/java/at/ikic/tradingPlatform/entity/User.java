@@ -1,6 +1,6 @@
 package at.ikic.tradingPlatform.entity;
 
-import at.ikic.tradingPlatform.Enum.UserRole;
+import at.ikic.tradingPlatform.enums.UserRole;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;

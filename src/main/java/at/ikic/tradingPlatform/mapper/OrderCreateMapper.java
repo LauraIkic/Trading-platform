@@ -1,6 +1,6 @@
 package at.ikic.tradingPlatform.mapper;
 
-import at.ikic.tradingPlatform.Enum.TransactionStatus;
+import at.ikic.tradingPlatform.enums.TransactionStatus;
 import at.ikic.tradingPlatform.dto.request.OrderCreateDto;
 import at.ikic.tradingPlatform.entity.Coin;
 import at.ikic.tradingPlatform.entity.Order;

@@ -1,4 +1,4 @@
-package at.ikic.tradingPlatform.Enum;
+package at.ikic.tradingPlatform.enums;
 
 public enum VerificationType {
     MAIL,
