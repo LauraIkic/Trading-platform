@@ -13,7 +13,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api")
-public class WalletController {
+public class WalletPatchController {
 
     @Autowired
     private WalletRepository walletRepository;
@@ -24,7 +24,7 @@ public class WalletController {
 
         BigDecimal newBalance;
         assert wallet != null;
-        if ((data.getType() == WalletTransactionType.ADD)) {
+        if ((data.getType() == WalletTransactionType.DEPOSIT)) {
             newBalance = wallet.getBalance().add(BigDecimal.valueOf(data.getAmount()));
         } else {
             newBalance = wallet.getBalance().subtract(BigDecimal.valueOf(data.getAmount()));
