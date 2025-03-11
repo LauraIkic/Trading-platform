@@ -29,4 +29,8 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "wallet_id")
     private Wallet wallet = new Wallet();
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "portfolio_id")
+    private Portfolio portfolio = new Portfolio();
 }
