@@ -23,7 +23,7 @@ public class WalletPatchController {
     private AuthService authService;
 
     @PatchMapping("/wallet")
-    public ResponseEntity<Wallet> patch (@PathVariable UUID id, @RequestBody WalletRequestDto data){
+    public ResponseEntity<Wallet> patch (@RequestBody WalletRequestDto data){
         Wallet wallet = authService.getAuthenticatedUser().getWallet();
 
         BigDecimal newBalance;
