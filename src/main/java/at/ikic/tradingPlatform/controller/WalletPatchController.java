@@ -4,6 +4,7 @@ import at.ikic.tradingPlatform.enums.WalletTransactionType;
 import at.ikic.tradingPlatform.dto.request.WalletRequestDto;
 import at.ikic.tradingPlatform.entity.Wallet;
 import at.ikic.tradingPlatform.repository.WalletRepository;
+import at.ikic.tradingPlatform.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,12 +19,14 @@ public class WalletPatchController {
     @Autowired
     private WalletRepository walletRepository;
 
-    @PatchMapping("/wallet/{id}")
+    @Autowired
+    private AuthService authService;
+
+    @PatchMapping("/wallet")
     public ResponseEntity<Wallet> patch (@PathVariable UUID id, @RequestBody WalletRequestDto data){
-        Wallet wallet = walletRepository.findById(id).orElse(null);
+        Wallet wallet = authService.getAuthenticatedUser().getWallet();
 
         BigDecimal newBalance;
-        assert wallet != null;
         if ((data.getType() == WalletTransactionType.DEPOSIT)) {
             newBalance = wallet.getBalance().add(BigDecimal.valueOf(data.getAmount()));
         } else {
@@ -37,11 +40,10 @@ public class WalletPatchController {
         return ResponseEntity.ok(wallet);
     }
 
-    @GetMapping("/wallet/{id}")
-    public ResponseEntity<Wallet> read (@PathVariable UUID id){
-        Wallet wallet = walletRepository.findById(id).orElse(null);
+    @GetMapping("/wallet")
+    public ResponseEntity<Wallet> read (){
+        Wallet wallet = authService.getAuthenticatedUser().getWallet();
 
-        assert wallet != null;
         return ResponseEntity.ok(wallet);
     }
 }
