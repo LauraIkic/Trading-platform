@@ -55,4 +55,9 @@ public class AuthService implements UserDetailsService {
 
         return new UsernamePasswordAuthenticationToken(user, user.getPassword(), user.getAuthorities());
     }
+
+    public User getAuthenticatedUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return userRepository.findByMail(authentication.getName());
+    }
 }

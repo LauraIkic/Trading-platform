@@ -5,6 +5,7 @@ import at.ikic.tradingPlatform.dto.request.OrderCreateDto;
 import at.ikic.tradingPlatform.entity.Coin;
 import at.ikic.tradingPlatform.entity.Order;
 import at.ikic.tradingPlatform.repository.CoinRepository;
+import at.ikic.tradingPlatform.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +15,9 @@ import java.time.Instant;
 public class OrderCreateMapper {
     @Autowired
     private CoinRepository coinRepository;
+
+    @Autowired
+    private AuthService authService;
 
     public void mapToEntity(Order order, OrderCreateDto dto) {
         Coin coin = coinRepository.findById(dto.getCoinId()).orElseThrow(() ->
@@ -26,6 +30,8 @@ public class OrderCreateMapper {
         order.setType(dto.getType());
         order.setStatus(TransactionStatus.OPEN);
         order.setQuantity(dto.getQuantity());
+
+        order.setUser(authService.getAuthenticatedUser());
 
         order.setDate(Instant.now());
     }
