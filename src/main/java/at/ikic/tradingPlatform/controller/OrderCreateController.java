@@ -26,9 +26,4 @@ public class OrderCreateController {
         orderCreateMapper.mapToEntity(order, data);
         orderRepository.save(order);
     }
-
-    @GetMapping("/orders")
-    private List<Order> getOrders() {
-        return orderRepository.findAll();
-    }
 }
