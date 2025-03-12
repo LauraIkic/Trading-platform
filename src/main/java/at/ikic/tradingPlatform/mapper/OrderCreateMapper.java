@@ -19,13 +19,10 @@ public class OrderCreateMapper {
     @Autowired
     private AuthService authService;
 
-    public void mapToEntity(Order order, OrderCreateDto dto) {
-        Coin coin = coinRepository.findById(dto.getCoinId()).orElseThrow(() ->
-                new IllegalArgumentException("Coin not found for ID: " + dto.getCoinId())
-        );
 
-        order.setCoin(coin);
-        order.setPrice(coin.getCurrentPrice());
+    public void mapToEntity(Order order, OrderCreateDto dto, Coin c) {
+        order.setCoin(c);
+        order.setPrice(c.getCurrentPrice());
 
         order.setType(dto.getType());
         order.setStatus(TransactionStatus.OPEN);

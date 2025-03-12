@@ -5,12 +5,10 @@ import at.ikic.tradingPlatform.dto.request.WalletRequestDto;
 import at.ikic.tradingPlatform.entity.Wallet;
 import at.ikic.tradingPlatform.repository.WalletRepository;
 import at.ikic.tradingPlatform.service.AuthService;
+import at.ikic.tradingPlatform.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.math.BigDecimal;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api")
@@ -20,20 +18,20 @@ public class WalletPatchController {
     private WalletRepository walletRepository;
 
     @Autowired
+    private WalletService walletService;
+
+    @Autowired
     private AuthService authService;
 
     @PatchMapping("/wallet")
     public ResponseEntity<Wallet> patch (@RequestBody WalletRequestDto data){
         Wallet wallet = authService.getAuthenticatedUser().getWallet();
 
-        BigDecimal newBalance;
         if ((data.getType() == WalletTransactionType.DEPOSIT)) {
-            newBalance = wallet.getBalance().add(BigDecimal.valueOf(data.getAmount()));
+            walletService.depositMoney(data.getAmount());
         } else {
-            newBalance = wallet.getBalance().subtract(BigDecimal.valueOf(data.getAmount()));
+            walletService.withdrawMoney(data.getAmount());
         }
-
-        wallet.setBalance(newBalance);
 
         walletRepository.save(wallet);
 
