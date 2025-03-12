@@ -29,5 +29,5 @@ Ensure you have Kafka running locally or in your preferred environment.
 * GET /api/coin - Get a complete coin list. 
 * GET /api/coin/{id} - Get one coin by id. 
 * GET /api/wallet - Get the user's wallet. 
-* GET /api/portfolio - Get the user's wallet. 
+* GET /api/portfolio - Get the user's portfolio. 
 * POST /api/order - Place an order for cryptocurrency.
