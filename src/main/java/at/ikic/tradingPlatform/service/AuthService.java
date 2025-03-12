@@ -12,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -33,14 +34,13 @@ public class AuthService implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(user.getMail(), user.getPassword(), authorityList);
     }
 
-    public Authentication authenticateNewUser(User user) {
+    public void authenticateNewUser(User user) {
         Authentication auth = new UsernamePasswordAuthenticationToken(
                 user.getMail(),
                 user.getPassword()
         );
         SecurityContextHolder.getContext().setAuthentication(auth);
 
-        return auth;
     }
 
     public Authentication authenticateUser(AuthRequestDto data) {
@@ -48,8 +48,9 @@ public class AuthService implements UserDetailsService {
         if (null == user) {
             throw new BadCredentialsException("This mail does not exist.");
         }
+        String password = new BCryptPasswordEncoder().encode(data.getPassword());
 
-        if (!user.getPassword().equals(data.getPassword())) {
+        if (!user.getPassword().equals(password)) {
             throw new BadCredentialsException("Wrong password");
         }
 
