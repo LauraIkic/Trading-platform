@@ -10,6 +10,7 @@ import at.ikic.tradingPlatform.security.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -28,6 +29,8 @@ public class AuthController {
         if (null != userRepository.findByMail(user.getMail())) {
             throw new Exception("This mail is already in use.");
         }
+
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         userRepository.save(user);
         authService.authenticateNewUser(user);
 
