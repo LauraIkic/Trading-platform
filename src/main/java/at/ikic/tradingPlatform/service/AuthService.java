@@ -48,9 +48,8 @@ public class AuthService implements UserDetailsService {
         if (null == user) {
             throw new BadCredentialsException("This mail does not exist.");
         }
-        String password = new BCryptPasswordEncoder().encode(data.getPassword());
-
-        if (!user.getPassword().equals(password)) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        if (!passwordEncoder.matches(data.getPassword(), user.getPassword())) {
             throw new BadCredentialsException("Wrong password");
         }
 
