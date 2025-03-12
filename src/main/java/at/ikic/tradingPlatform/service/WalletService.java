@@ -1,6 +1,7 @@
 package at.ikic.tradingPlatform.service;
 
 import at.ikic.tradingPlatform.entity.Wallet;
+import at.ikic.tradingPlatform.enums.WalletTransactionType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,14 +13,14 @@ public class WalletService {
     @Autowired
     private AuthService authService;
 
-   public void depositMoney(BigDecimal money) {
+   public void transferMoney(BigDecimal money, WalletTransactionType type){
        Wallet wallet = authService.getAuthenticatedUser().getWallet();
-       wallet.setBalance(wallet.getBalance().subtract(money));
-   }
 
-   public void withdrawMoney(BigDecimal money){
-       Wallet wallet = authService.getAuthenticatedUser().getWallet();
-       wallet.setBalance(wallet.getBalance().add(money));
+       if (WalletTransactionType.DEPOSIT == type) {
+           wallet.setBalance(wallet.getBalance().add(money));
+       } else {
+           wallet.setBalance(wallet.getBalance().subtract(money));
+       }
    }
 
    public Boolean balanceSufficient(BigDecimal money) {

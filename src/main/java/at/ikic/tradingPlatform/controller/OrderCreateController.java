@@ -6,9 +6,10 @@ import at.ikic.tradingPlatform.entity.Order;
 import at.ikic.tradingPlatform.mapper.OrderCreateMapper;
 import at.ikic.tradingPlatform.repository.CoinRepository;
 import at.ikic.tradingPlatform.repository.OrderRepository;
-import at.ikic.tradingPlatform.service.AuthService;
+import at.ikic.tradingPlatform.service.OrderService;
 import at.ikic.tradingPlatform.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -29,19 +30,27 @@ public class OrderCreateController {
     @Autowired
     private CoinRepository coinRepository;
 
+
+    @Autowired
+    private OrderService orderService;
+
     @PostMapping("/order")
-    private void createOrder(@RequestBody OrderCreateDto data) {
+    private ResponseEntity<Order> createOrder(@RequestBody OrderCreateDto data){
         Coin coin = coinRepository.findById(data.getCoinId()).orElseThrow(() ->
                 new IllegalArgumentException("Coin not found for ID: " + data.getCoinId())
         );
 
-        BigDecimal currentPrice =BigDecimal.valueOf(coin.getCurrentPrice());
+        BigDecimal currentPrice = BigDecimal.valueOf(coin.getCurrentPrice());
         if (false == walletService.balanceSufficient(currentPrice)) {
-            new IllegalArgumentException("Balance not sufficient");
+             throw new IllegalArgumentException("Balance not sufficient");
         }
 
         Order order = new Order();
         orderCreateMapper.mapToEntity(order, data, coin);
         orderRepository.save(order);
+
+        orderService.addOrderToMarket(order, data.getType());
+
+        return ResponseEntity.ok(order);
     }
 }

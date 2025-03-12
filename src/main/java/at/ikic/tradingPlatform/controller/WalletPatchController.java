@@ -1,6 +1,5 @@
 package at.ikic.tradingPlatform.controller;
 
-import at.ikic.tradingPlatform.enums.WalletTransactionType;
 import at.ikic.tradingPlatform.dto.request.WalletRequestDto;
 import at.ikic.tradingPlatform.entity.Wallet;
 import at.ikic.tradingPlatform.repository.WalletRepository;
@@ -26,13 +25,7 @@ public class WalletPatchController {
     @PatchMapping("/wallet")
     public ResponseEntity<Wallet> patch (@RequestBody WalletRequestDto data){
         Wallet wallet = authService.getAuthenticatedUser().getWallet();
-
-        if ((data.getType() == WalletTransactionType.DEPOSIT)) {
-            walletService.depositMoney(data.getAmount());
-        } else {
-            walletService.withdrawMoney(data.getAmount());
-        }
-
+        walletService.transferMoney(data.getAmount(), data.getType());
         walletRepository.save(wallet);
 
         return ResponseEntity.ok(wallet);
