@@ -1,6 +1,6 @@
 # Cryptocurrency Trading Platform
 
-A Java Spring-based cryptocurrency trading platform that allows users to sign up, log in, and place orders for cryptocurrency transactions. The system uses JWT for secure authentication, stores user data in a MySQL database, and integrates real-time cryptocurrency data fetched from the Gecko API.
+This project is a Java Spring-based cryptocurrency trading platform that enables users to sign up, log in, and execute cryptocurrency transactions. It employs JWT (JSON Web Tokens) for secure authentication, with user data stored in a MySQL database. Real-time cryptocurrency market data is seamlessly integrated from the Gecko API. This repository focuses on user management, while the crypto-marketplace project functions as a microservice, responsible for fetching cryptocurrency data and handling order processing.
 
 ## Features
 
