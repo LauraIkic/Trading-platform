@@ -1,7 +1,7 @@
 package at.ikic.tradingPlatform.controller;
 
 import at.ikic.tradingPlatform.entity.Coin;
-import at.ikic.tradingPlatform.repository.CoinRepository;
+import at.ikic.tradingPlatform.kafka.consumer.CoinConsumer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,15 +14,15 @@ import java.util.Optional;
 public class CoinController {
 
     @Autowired
-    private CoinRepository coinRepository;
+    private CoinConsumer coinConsumer;
 
     @GetMapping("/coin")
-    public ResponseEntity<List<Coin>> list (){
-        return ResponseEntity.ok(coinRepository.findAll());
+    public List<Coin> list (){
+        return coinConsumer.coins;
     }
 
     @GetMapping("/coin/{id}")
-    public ResponseEntity<Optional<Coin>> read (@PathVariable String id){
-        return ResponseEntity.ok(coinRepository.findById(id));
+    public Coin read (@PathVariable String id){
+        return (Coin) coinConsumer.coins.stream().filter((coin -> coin.getId() == id));
     }
 }

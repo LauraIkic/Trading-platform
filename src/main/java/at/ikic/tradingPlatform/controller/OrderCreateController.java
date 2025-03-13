@@ -3,6 +3,7 @@ package at.ikic.tradingPlatform.controller;
 import at.ikic.tradingPlatform.dto.request.OrderCreateDto;
 import at.ikic.tradingPlatform.entity.Coin;
 import at.ikic.tradingPlatform.entity.Order;
+import at.ikic.tradingPlatform.kafka.consumer.CoinConsumer;
 import at.ikic.tradingPlatform.mapper.OrderCreateMapper;
 import at.ikic.tradingPlatform.repository.CoinRepository;
 import at.ikic.tradingPlatform.repository.OrderRepository;
@@ -28,7 +29,7 @@ public class OrderCreateController {
     private WalletService walletService;
 
     @Autowired
-    private CoinRepository coinRepository;
+    private CoinConsumer coinConsumer;
 
 
     @Autowired
@@ -36,20 +37,18 @@ public class OrderCreateController {
 
     @PostMapping("/order")
     private ResponseEntity<Order> createOrder(@RequestBody OrderCreateDto data){
-        Coin coin = coinRepository.findById(data.getCoinId()).orElseThrow(() ->
-                new IllegalArgumentException("Coin not found for ID: " + data.getCoinId())
-        );
+        Coin c = (Coin) coinConsumer.coins.stream().filter((coin -> coin.getId() == data.getCoinId()));
 
-        BigDecimal currentPrice = BigDecimal.valueOf(coin.getCurrentPrice());
+        BigDecimal currentPrice = BigDecimal.valueOf(c.getCurrentPrice());
         if (false == walletService.balanceSufficient(currentPrice)) {
              throw new IllegalArgumentException("Balance not sufficient");
         }
 
         Order order = new Order();
-        orderCreateMapper.mapToEntity(order, data, coin);
+        orderCreateMapper.mapToEntity(order, data, c);
         orderRepository.save(order);
 
-        orderService.addOrderToMarket(order, data.getType());
+        orderService.addOrderToMarket(order);
 
         return ResponseEntity.ok(order);
     }
