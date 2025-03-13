@@ -12,14 +12,11 @@ import java.util.List;
 @Service
 public class CoinConsumer {
 
-    @Autowired
-    private  CoinRepository coinRepository;
+    public List<Coin> coins;
 
     @KafkaListener(topics = KafkaConstant.CRYPTO_COIN_TOPIC, groupId = KafkaConstant.CRYPTO_GROUP)
     public void consume(List<Coin> coins)
     {
-        coinRepository.saveAll(coins);
+        this.coins = coins;
     }
-
-
 }
