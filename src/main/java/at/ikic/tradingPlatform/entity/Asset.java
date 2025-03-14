@@ -16,7 +16,7 @@ public class Asset {
     @OneToOne
     private Coin coinId;
 
-    private int quantity;
+    private double quantity;
 
     private BigDecimal value;
 }

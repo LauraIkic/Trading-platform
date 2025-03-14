@@ -14,5 +14,5 @@ public class OrderCreateDto {
 
     @NotNull(message = "Quantity can not be null")
     @Min(value = 1, message = "Quantity must be greater than 0")
-    private int quantity;
+    private double quantity;
 }
