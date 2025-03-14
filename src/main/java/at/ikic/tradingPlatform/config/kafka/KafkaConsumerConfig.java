@@ -1,5 +1,6 @@
 package at.ikic.tradingPlatform.config.kafka;
 
+import at.ikic.tradingPlatform.constants.KafkaConstant;
 import at.ikic.tradingPlatform.entity.Coin;
 import at.ikic.tradingPlatform.deserializer.ListCoinDeserializer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -25,7 +26,7 @@ public class KafkaConsumerConfig {
     public ConsumerFactory<String, List<Coin>> consumerFactory() {
         Map<String, Object> consumerProps = new HashMap<>();
         consumerProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-        consumerProps.put(ConsumerConfig.GROUP_ID_CONFIG, "cryptoGroup");
+        consumerProps.put(ConsumerConfig.GROUP_ID_CONFIG,  KafkaConstant.CRYPTO_GROUP);
         consumerProps.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 
         ListCoinDeserializer listCoinDeserializer = new ListCoinDeserializer();

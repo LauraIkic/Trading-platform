@@ -22,7 +22,11 @@ public class CoinController {
     }
 
     @GetMapping("/coin/{id}")
-    public Coin read (@PathVariable String id){
-        return (Coin) coinConsumer.coins.stream().filter((coin -> coin.getId() == id));
+    public Coin read(@PathVariable String id) {
+        return coinConsumer.coins.stream()
+                .filter(coin -> coin.getId().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Coin not found"));
     }
+
 }

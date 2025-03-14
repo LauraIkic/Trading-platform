@@ -5,8 +5,6 @@ import at.ikic.tradingPlatform.entity.Coin;
 import at.ikic.tradingPlatform.entity.Order;
 import at.ikic.tradingPlatform.kafka.consumer.CoinConsumer;
 import at.ikic.tradingPlatform.mapper.OrderCreateMapper;
-import at.ikic.tradingPlatform.repository.CoinRepository;
-import at.ikic.tradingPlatform.repository.OrderRepository;
 import at.ikic.tradingPlatform.service.OrderService;
 import at.ikic.tradingPlatform.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +16,6 @@ import java.math.BigDecimal;
 @RestController
 @RequestMapping("/api")
 public class OrderCreateController {
-
-    @Autowired
-    private OrderRepository orderRepository;
 
     @Autowired
     private OrderCreateMapper orderCreateMapper;
@@ -37,7 +32,10 @@ public class OrderCreateController {
 
     @PostMapping("/order")
     private ResponseEntity<Order> createOrder(@RequestBody OrderCreateDto data){
-        Coin c = (Coin) coinConsumer.coins.stream().filter((coin -> coin.getId() == data.getCoinId()));
+        Coin c =  coinConsumer.coins.stream()
+                .filter(coin -> coin.getId().equals(data.getCoinId()))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Coin not found"));
 
         BigDecimal currentPrice = BigDecimal.valueOf(c.getCurrentPrice());
         if (false == walletService.balanceSufficient(currentPrice)) {
@@ -46,7 +44,6 @@ public class OrderCreateController {
 
         Order order = new Order();
         orderCreateMapper.mapToEntity(order, data, c);
-        orderRepository.save(order);
 
         orderService.addOrderToMarket(order);
 
