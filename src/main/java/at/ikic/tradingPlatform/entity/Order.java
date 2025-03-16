@@ -29,4 +29,6 @@ public class Order {
 
     @Version
     private Long version;
+
+    private UUID referenceId;
 }

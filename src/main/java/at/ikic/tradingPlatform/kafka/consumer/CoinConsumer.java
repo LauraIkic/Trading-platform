@@ -12,7 +12,7 @@ public class CoinConsumer {
 
     public List<Coin> coins;
 
-    @KafkaListener(topics = KafkaConstant.CRYPTO_COIN_TOPIC, groupId = KafkaConstant.CRYPTO_GROUP)
+    @KafkaListener(topics = KafkaConstant.CRYPTO_COIN_TOPIC, groupId = KafkaConstant.CRYPTO_GROUP, containerFactory = "kafkaListenerContainerFactoryCoin")
     public void consume(List<Coin> coins)
     {
         this.coins = coins;

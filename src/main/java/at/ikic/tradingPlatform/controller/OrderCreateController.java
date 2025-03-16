@@ -5,6 +5,7 @@ import at.ikic.tradingPlatform.entity.Coin;
 import at.ikic.tradingPlatform.entity.Order;
 import at.ikic.tradingPlatform.kafka.consumer.CoinConsumer;
 import at.ikic.tradingPlatform.mapper.OrderCreateMapper;
+import at.ikic.tradingPlatform.repository.OrderRepository;
 import at.ikic.tradingPlatform.service.OrderService;
 import at.ikic.tradingPlatform.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,8 @@ public class OrderCreateController {
     @Autowired
     private CoinConsumer coinConsumer;
 
+    @Autowired
+    private OrderRepository orderRepository;
 
     @Autowired
     private OrderService orderService;
@@ -44,6 +47,7 @@ public class OrderCreateController {
 
         Order order = new Order();
         orderCreateMapper.mapToEntity(order, data, c);
+        orderRepository.save(order);
 
         orderService.addOrderToMarket(order);
 
